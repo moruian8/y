@@ -129,17 +129,11 @@
       <p>有时候在提交代码时，不小心提交了敏感数据，如账号密码什么的，这样在历史记录中就可以查看到，这样很不安全，所以就需要吧历史提交记录删了，变成一个新的仓库。</p>
 <p>记录一下方法:</p>
 <h3 id="创建一个新的分支"><a href="#创建一个新的分支" class="headerlink" title="创建一个新的分支"></a>创建一个新的分支</h3><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">git checkout <span class="hljs-comment">--orphan latest_branch</span><br></code></pre></td></tr></table></figure>
-
 <h3 id="添加所有文件"><a href="#添加所有文件" class="headerlink" title="添加所有文件"></a>添加所有文件</h3><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">git <span class="hljs-keyword">add</span><span class="bash"> -A</span><br></code></pre></td></tr></table></figure>
-
 <h3 id="提交更改"><a href="#提交更改" class="headerlink" title="提交更改"></a>提交更改</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined"><span class="hljs-attribute">git</span> commit -am <span class="hljs-string">"commit"</span><br></code></pre></td></tr></table></figure>
-
 <h3 id="删除需要替换的分支"><a href="#删除需要替换的分支" class="headerlink" title="删除需要替换的分支"></a>删除需要替换的分支</h3><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined"><span class="hljs-symbol">git</span> <span class="hljs-keyword">branch </span>-D master<br></code></pre></td></tr></table></figure>
-
 <h3 id="重命名创建的分支为删除的分支"><a href="#重命名创建的分支为删除的分支" class="headerlink" title="重命名创建的分支为删除的分支"></a>重命名创建的分支为删除的分支</h3><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined"><span class="hljs-symbol">git</span> <span class="hljs-keyword">branch </span>-m master<br></code></pre></td></tr></table></figure>
-
 <h3 id="强制提交到远程仓库"><a href="#强制提交到远程仓库" class="headerlink" title="强制提交到远程仓库"></a>强制提交到远程仓库</h3><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">git <span class="hljs-built_in">push</span> -f <span class="hljs-built_in">origin</span> master<br></code></pre></td></tr></table></figure>
-
 <p>这样以后在去看master分支，就是一个全新的仓库惹，所以提交记录都没有惹</p>
 <p>以上！</p>
 

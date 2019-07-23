@@ -130,17 +130,11 @@
 <p>github 代码提交多了以后 会有很多历史记录，这些历史记录大多没有重要信息切这些历史纪录中可能会包含项目里密码等敏感信息，在网上找了很久，找到一下方法，亲测有效，使你的git仓库成为一个全新的仓库，并保持代码不变。</p>
 </blockquote>
 <h3 id="1-Checkout"><a href="#1-Checkout" class="headerlink" title="1.Checkout"></a>1.Checkout</h3><figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">git checkout <span class="hljs-comment">--orphan latest_branch</span><br></code></pre></td></tr></table></figure>
-
 <h3 id="2-add-all-the-files"><a href="#2-add-all-the-files" class="headerlink" title="2.add all the files"></a>2.add all the files</h3><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">git <span class="hljs-keyword">add</span><span class="bash"> .</span><br></code></pre></td></tr></table></figure>
-
 <h3 id="3-Commit-the-changes"><a href="#3-Commit-the-changes" class="headerlink" title="3.Commit the changes"></a>3.Commit the changes</h3><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined"><span class="hljs-attribute">git</span> commit -am <span class="hljs-string">'commit'</span><br></code></pre></td></tr></table></figure>
-
 <h3 id="4-Delete-the-branch"><a href="#4-Delete-the-branch" class="headerlink" title="4.Delete the branch"></a>4.Delete the branch</h3><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined"><span class="hljs-symbol">git</span> <span class="hljs-keyword">branch </span>-D master<br></code></pre></td></tr></table></figure>
-
 <h3 id="5-Rename-the-current-branch-to-master"><a href="#5-Rename-the-current-branch-to-master" class="headerlink" title="5.Rename the current branch to master"></a>5.Rename the current branch to master</h3><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined"><span class="hljs-symbol">git</span> <span class="hljs-keyword">branch </span>-m master<br></code></pre></td></tr></table></figure>
-
 <h3 id="6-Finally-force-update-your-repository"><a href="#6-Finally-force-update-your-repository" class="headerlink" title="6.Finally, force update your repository"></a>6.Finally, force update your repository</h3><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">git <span class="hljs-built_in">push</span> -f <span class="hljs-built_in">origin</span> master<br></code></pre></td></tr></table></figure>
-
 <p>参考地址：<a href="https://stackoverflow.com/questions/13716658/how-to-delete-all-commit-history-in-github" target="_blank" rel="noopener">stackoverflow</a></p>
 
     </div>

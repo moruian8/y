@@ -132,14 +132,11 @@
 <p>解决思路也很简单，给Hexo添加一个渲染之前的过滤器，在里面替换文章的<code>slug</code>内容为格式化以后的时间</p>
 <p>代码如下:</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js">hexo.extend.filter.register(<span class="hljs-string">'before_post_render'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">data</span>) </span>&#123;<br>  <span class="hljs-keyword">if</span> (!hexo.theme.config.permalink) <span class="hljs-keyword">return</span> data<br>  <span class="hljs-keyword">if</span> (data.layout === <span class="hljs-string">"post"</span>) &#123;<br>    data.slug = data.date.format(<span class="hljs-string">"YYYY-MM-DD-HH-mm-ss"</span>);<br>    <span class="hljs-keyword">return</span> data<br>  &#125;<br>&#125;);<br></code></pre></td></tr></table></figure>
-
 <p><strong>使用:</strong></p>
 <p>修改主题目录下的<code>_config.yml</code>设置<code>permalink</code>为<code>true</code></p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">permalink:</span> <span class="hljs-literal">true</span><br></code></pre></td></tr></table></figure>
-
 <p>修改Hexo根目录下的<code>_config.yml</code>设置<code>permalink</code>，添加<code>:slug</code></p>
 <figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">permalink:</span> <span class="hljs-string">:year/:month/:day/:slug/</span><br><span class="hljs-comment"># 生成以后为: 2019/03/20/2019-03-20-19-44-16</span><br></code></pre></td></tr></table></figure>
-
 <p><strong>问题:</strong></p>
 <p>使用以后发现使用<code>:title</code>以会一样生成为时间，目前还不知道为什么，嘛～我也不需要标题，所以问题不大。。。</p>
 

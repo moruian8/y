@@ -129,11 +129,9 @@
       <p>使用npm 安装包时出现错误 安装失败后</p>
 <p>npm list 出现以下信息</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs (base)">npm ERR! extraneous: asciify-pixel-matrix@1.0.6 D:\Project\wzzl\node_modules\asciify-pixel-matrix<br>npm ERR! extraneous: compute-size@1.0.5 D:\Project\wzzl\node_modules\compute-size<br>npm ERR! extraneous: got@6.6.3 D:\Project\wzzl\node_modules\got<br>npm ERR! extraneous: image-parser@1.2.1 D:\Project\wzzl\node_modules\image-parser<br>npm ERR! extraneous: lwip-pixels@1.1.4 D:\Project\wzzl\node_modules\lwip-pixels<br>npm ERR! extraneous: one-by-one@3.2.3 D:\Project\wzzl\node_modules\one-by-one<br>npm ERR! extraneous: terminal-char-width@1.0.4 D:\Project\wzzl\node_modules\terminal-char-width<br>npm ERR! extraneous: underscore@1.8.3 D:\Project\wzzl\node_modules\underscore<br>npm ERR! extraneous: url-remote@1.1.3 D:\Project\wzzl\node_modules\url-remote<br>npm ERR! extraneous: walkdo@0.9.6 D:\Project\wzzl\node_modules\walkdo<br></code></pre></td></tr></table></figure>
-
 <p>应该说的是有一些闲置的、不必要的软件包安装。在大多数情况下 这应该是一个警告，因此可以忽略。</p>
 <p>如果需要删除这些信息 可以这样：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs (base)">npm prune<br></code></pre></td></tr></table></figure>
-
 <p>它会删除package.json文件外的所有包 再次npm list 发现错误消失！</p>
 
     </div>

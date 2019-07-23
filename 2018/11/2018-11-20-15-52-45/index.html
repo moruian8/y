@@ -127,50 +127,29 @@
 
     <div class="article-entry">
       <h3 id="1-firewalld的基本使用"><a href="#1-firewalld的基本使用" class="headerlink" title="1.firewalld的基本使用"></a>1.firewalld的基本使用</h3><h6 id="启动："><a href="#启动：" class="headerlink" title="启动："></a>启动：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs (BASE)">systemctl start firewalld<br></code></pre></td></tr></table></figure>
-
 <h6 id="关闭："><a href="#关闭：" class="headerlink" title="关闭："></a>关闭：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs (BASE)">systemctl stop firewalld<br></code></pre></td></tr></table></figure>
-
 <h6 id="重启："><a href="#重启：" class="headerlink" title="重启："></a>重启：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs (BASE)">systemctl restart firewalld<br></code></pre></td></tr></table></figure>
-
 <h6 id="查看状态："><a href="#查看状态：" class="headerlink" title="查看状态："></a>查看状态：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs (BASE)">systemctl status firewalld<br></code></pre></td></tr></table></figure>
-
 <h6 id="开机禁用："><a href="#开机禁用：" class="headerlink" title="开机禁用："></a>开机禁用：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs (BASE)">systemctl disable firewalld<br></code></pre></td></tr></table></figure>
-
 <h6 id="开机启用："><a href="#开机启用：" class="headerlink" title="开机启用："></a>开机启用：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs (BASE)">systemctl enable firewalld<br></code></pre></td></tr></table></figure>
-
 <h3 id="2-firewalld-cmd的一些命令"><a href="#2-firewalld-cmd的一些命令" class="headerlink" title="2.firewalld-cmd的一些命令"></a>2.firewalld-cmd的一些命令</h3><h6 id="查看版本："><a href="#查看版本：" class="headerlink" title="查看版本："></a>查看版本：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs (BASE)">firewall-cmd --version<br></code></pre></td></tr></table></figure>
-
 <h6 id="查看帮助："><a href="#查看帮助：" class="headerlink" title="查看帮助："></a>查看帮助：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs (BASE)">firewall-cmd --help<br></code></pre></td></tr></table></figure>
-
 <h6 id="显示状态："><a href="#显示状态：" class="headerlink" title="显示状态："></a>显示状态：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs (BASE)">firewall-cmd --state<br></code></pre></td></tr></table></figure>
-
 <h6 id="查看所有打开的端口："><a href="#查看所有打开的端口：" class="headerlink" title="查看所有打开的端口："></a>查看所有打开的端口：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs (BASE)">firewall-cmd --zone=public --list-ports<br></code></pre></td></tr></table></figure>
-
 <h6 id="更新防火墙规则："><a href="#更新防火墙规则：" class="headerlink" title="更新防火墙规则："></a>更新防火墙规则：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs (BASE)">firewall-cmd --reload<br></code></pre></td></tr></table></figure>
-
 <h6 id="查看区域信息"><a href="#查看区域信息" class="headerlink" title="查看区域信息:"></a>查看区域信息:</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs (BASE)">firewall-cmd --get-active-zones<br></code></pre></td></tr></table></figure>
-
 <h6 id="查看指定接口所属区域："><a href="#查看指定接口所属区域：" class="headerlink" title="查看指定接口所属区域："></a>查看指定接口所属区域：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs (BASE)">firewall-cmd --get-zone-of-interface=eth0<br></code></pre></td></tr></table></figure>
-
 <h6 id="拒绝所有包："><a href="#拒绝所有包：" class="headerlink" title="拒绝所有包："></a>拒绝所有包：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs (BASE)">firewall-cmd --panic-on<br></code></pre></td></tr></table></figure>
-
 <h6 id="取消拒绝状态："><a href="#取消拒绝状态：" class="headerlink" title="取消拒绝状态："></a>取消拒绝状态：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs (BASE)">firewall-cmd --panic-off<br></code></pre></td></tr></table></figure>
-
 <h6 id="查看是否拒绝："><a href="#查看是否拒绝：" class="headerlink" title="查看是否拒绝："></a>查看是否拒绝：</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs (BASE)">firewall-cmd --query-panic<br></code></pre></td></tr></table></figure>
-
 <h6 id="查看某个端口是否开启"><a href="#查看某个端口是否开启" class="headerlink" title="查看某个端口是否开启"></a>查看某个端口是否开启</h6><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs undefined">firewall-cmd <span class="hljs-params">--zone=</span> public <span class="hljs-params">--query-port=</span>[端口]/[协议]<br><span class="hljs-string">//</span> 如<br>firewall-cmd <span class="hljs-params">--zone=</span> public <span class="hljs-params">--query-port=80/tcp</span><br></code></pre></td></tr></table></figure>
-
 <h6 id="开放一个端口"><a href="#开放一个端口" class="headerlink" title="开放一个端口"></a>开放一个端口</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs (BASE)">firewall-cmd --zone=public --add-port=[端口]/[协议] --permanent （--permanent永久生效，没有此参数重启后失效）<br>// 如<br>firewall-cmd --zone=public --add-port=80/tcp --permanent<br></code></pre></td></tr></table></figure>
-
 <p>如果不想使用命令行，修改<em>/etc/firewalld/zones/public.xml</em>文件，把端口写进入，如:</p>
 <figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">&lt;port <span class="hljs-attribute">protocol</span>=<span class="hljs-string">"tcp"</span> <span class="hljs-attribute">port</span>=<span class="hljs-string">"8888"</span>&gt;<br></code></pre></td></tr></table></figure>
-
 <h6 id="关闭一个端口"><a href="#关闭一个端口" class="headerlink" title="关闭一个端口"></a>关闭一个端口</h6><figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs undefined">firewall-cmd <span class="hljs-params">--zone=</span> public <span class="hljs-params">--remove-port=</span>[端口]/[协议] <span class="hljs-params">--permanent</span> （<span class="hljs-params">--permanent</span>永久生效，没有此参数重启后失效）<br><span class="hljs-string">//</span> 如<br>firewall-cmd <span class="hljs-params">--zone=</span> public <span class="hljs-params">--remove-port=80/tcp</span> <span class="hljs-params">--permanent</span><br></code></pre></td></tr></table></figure>
-
 <p>如果不想用命令行，跟添加同理，修改<em>/etc/firewalld/zones/public.xml</em>文件。</p>
 <p>在添加或关闭一个端口以后，不要忘了重新加载</p>
 <h6 id="重新加载"><a href="#重新加载" class="headerlink" title="重新加载"></a>重新加载</h6><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">firewall-<span class="hljs-keyword">cmd</span><span class="bash"> --reload</span><br></code></pre></td></tr></table></figure>
-
 <p>因为在CentOS7以后，默认使用firewalld防火墙，所以在网上收集一些常用指令做整理记录，信息来源于网络！</p>
 <p>以上。</p>
 

@@ -135,9 +135,7 @@
 <li>round_robin_chain ：轮询模式，自动跳过不可用代理</li>
 <li>random_chain ：随机模式</li>
 </ol>
-<h3 id="修改配置文件："><a href="#修改配置文件：" class="headerlink" title="修改配置文件："></a>修改配置文件：</h3><p>修改 /etc/proxychains.conf 文件：<br>注释掉strict_chain和random_chain，取消dynamic_chain的注释<br>然后在[ProxyList]下添加ss代理</p>
-<figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">socks5 <span class="hljs-string">[Your IP]</span> <span class="hljs-string">[Your Port]</span><br></code></pre></td></tr></table></figure>
-
+<h3 id="修改配置文件："><a href="#修改配置文件：" class="headerlink" title="修改配置文件："></a>修改配置文件：</h3><p>修改 /etc/proxychains.conf 文件：<br>注释掉strict_chain和random_chain，取消dynamic_chain的注释<br>然后在[ProxyList]下添加ss代理<br><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined">socks5 <span class="hljs-string">[Your IP]</span> <span class="hljs-string">[Your Port]</span><br></code></pre></td></tr></table></figure></p>
 <h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>proxychains curl ip.cn</p>
 <h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><p>proxychains 程序 参数 （如：proxychains npm install xxx）</p>
 

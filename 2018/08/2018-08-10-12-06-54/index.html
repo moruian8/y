@@ -127,41 +127,25 @@
 
     <div class="article-entry">
       <p>Mac下默认的bash终端使用久了，感觉很多地方都不方便，所以就准备安装<em>zsh</em>，听说跟<em>oh my zsh</em>更配哟！</p>
-<h3 id="安装zsh-amp-amp-oh-my-zsh"><a href="#安装zsh-amp-amp-oh-my-zsh" class="headerlink" title="安装zsh &amp;&amp; oh my zsh"></a>安装zsh &amp;&amp; oh my zsh</h3><p><strong><em>需要注意的是，当你安装了zsh并默认使用zsh，那么你配置的<del>/.bash_profile文件将失效，应改为使用</del>/.zshrc文件</em></strong></p>
+<h3 id="安装zsh-amp-amp-oh-my-zsh"><a href="#安装zsh-amp-amp-oh-my-zsh" class="headerlink" title="安装zsh &amp;&amp; oh my zsh"></a>安装zsh &amp;&amp; oh my zsh</h3><p><strong><em>需要注意的是，当你安装了zsh并默认使用zsh，那么你配置的~/.bash_profile文件将失效，应改为使用~/.zshrc文件</em></strong></p>
 <h5 id="查看本地已经看装的shell"><a href="#查看本地已经看装的shell" class="headerlink" title="查看本地已经看装的shell"></a>查看本地已经看装的shell</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">cat /etc/shells<br></code></pre></td></tr></table></figure>
-
 <p>我这里显示如下:<br><img src="https://qiniu.miiiku.xyz/attach/2018-08/85454CBE-87E0-4078-B1B4-0E8743A8302C.png" alt="https://qiniu.miiiku.xyz/attach/2018-08/85454CBE-87E0-4078-B1B4-0E8743A8302C.png"></p>
 <p>Mac下默认是安装了zsh的</p>
-<h5 id="安装zsh"><a href="#安装zsh" class="headerlink" title="安装zsh"></a>安装zsh</h5><p>如果本地没有zsh可以使用<em>brew</em>安装</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">brew install zsh<br></code></pre></td></tr></table></figure>
-
+<h5 id="安装zsh"><a href="#安装zsh" class="headerlink" title="安装zsh"></a>安装zsh</h5><p>如果本地没有zsh可以使用<em>brew</em>安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">brew install zsh<br></code></pre></td></tr></table></figure></p>
 <h5 id="切换默认shell为zsh"><a href="#切换默认shell为zsh" class="headerlink" title="切换默认shell为zsh"></a>切换默认shell为zsh</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">chsh -s /bin/zsh<br></code></pre></td></tr></table></figure>
-
-<p>查看是否切换成功:</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-variable">$SHELL</span><br></code></pre></td></tr></table></figure>
-
-<h5 id="安装oh-my-zsh"><a href="#安装oh-my-zsh" class="headerlink" title="安装oh my zsh"></a>安装oh my zsh</h5><p>先确保本地已安装<em>git</em></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">// 使用curl安装<br>sh -c <span class="hljs-string">"<span class="hljs-variable">$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span><br><br>// 使用wget安装<br>sh -c <span class="hljs-string">"<span class="hljs-variable">$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)</span>"</span><br></code></pre></td></tr></table></figure>
-
-<h5 id="修改oh-my-zsh主题"><a href="#修改oh-my-zsh主题" class="headerlink" title="修改oh my zsh主题"></a>修改oh my zsh主题</h5><p>oh my zsh 主题都存放在<em>～/.oh-my-zsh/themes/<em>目录下<br>如吧主题修改为</em>ys</em></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">vim ~/.zshrc<br></code></pre></td></tr></table></figure>
-
-<p>将<em>ZSH_THEME<em>改成</em>ys</em></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ZSH_THEME=<span class="hljs-string">"ys"</span><br></code></pre></td></tr></table></figure>
-
-<p>更新配置</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> ~/.zshrc<br></code></pre></td></tr></table></figure>
-
+<p>查看是否切换成功:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">echo</span> <span class="hljs-variable">$SHELL</span><br></code></pre></td></tr></table></figure></p>
+<h5 id="安装oh-my-zsh"><a href="#安装oh-my-zsh" class="headerlink" title="安装oh my zsh"></a>安装oh my zsh</h5><p>先确保本地已安装<em>git</em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs bash">// 使用curl安装<br>sh -c <span class="hljs-string">"<span class="hljs-variable">$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span><br><br>// 使用wget安装<br>sh -c <span class="hljs-string">"<span class="hljs-variable">$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)</span>"</span><br></code></pre></td></tr></table></figure></p>
+<h5 id="修改oh-my-zsh主题"><a href="#修改oh-my-zsh主题" class="headerlink" title="修改oh my zsh主题"></a>修改oh my zsh主题</h5><p>oh my zsh 主题都存放在<em>～/.oh-my-zsh/themes/</em>目录下<br>如吧主题修改为<em>ys</em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">vim ~/.zshrc<br></code></pre></td></tr></table></figure></p>
+<p>将<em>ZSH_THEME</em>改成<em>ys</em><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">ZSH_THEME=<span class="hljs-string">"ys"</span><br></code></pre></td></tr></table></figure></p>
+<p>更新配置<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">source</span> ~/.zshrc<br></code></pre></td></tr></table></figure></p>
 <p><strong>zsh的自动补全真的很好用，当你scp文件到服务器的时候，如果服务器设置了免密码ssh登入，按tab好像可以自动补全服务端的目录OwO</strong></p>
-<h3 id="安装iTerm2"><a href="#安装iTerm2" class="headerlink" title="安装iTerm2"></a>安装iTerm2</h3><p>使用<em>brew</em>安装</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">brew cask install iterm2<br></code></pre></td></tr></table></figure>
-
+<h3 id="安装iTerm2"><a href="#安装iTerm2" class="headerlink" title="安装iTerm2"></a>安装iTerm2</h3><p>使用<em>brew</em>安装<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">brew cask install iterm2<br></code></pre></td></tr></table></figure></p>
 <p>iterm2的分屏功能和多tab页合并是我最喜欢的，有时候开发需要在后台启几个server，用iterm2，一个窗口就搞定，体验很棒！</p>
 <p>按<em>command+d</em>垂直分割，<em>command+shift+d</em>水平分割，如果你的屏幕够大，可以一直分割。</p>
 <p>右键<em>New Tab</em>即可创建一个新的tab页，按下<em>command+数字</em>切换对应的tab页。</p>
 <p><img src="https://qiniu.miiiku.xyz/attach/2018-08/0A7F3652-1493-43E1-849A-F2F082B66E76.png" alt="https://qiniu.miiiku.xyz/attach/2018-08/0A7F3652-1493-43E1-849A-F2F082B66E76.png"></p>
 <p>设置快捷打开方式：</p>
-<p>在iterm2为焦点的情况下，按<em>command+,<em>，选中</em>Keys<em>，找到</em>Hotkey<em>打勾即可，默认快捷键为</em>optin+space</em></p>
+<p>在iterm2为焦点的情况下，按<em>command+,</em>，选中<em>Keys</em>，找到<em>Hotkey</em>打勾即可，默认快捷键为<em>optin+space</em></p>
 <p><img src="https://qiniu.miiiku.xyz/attach/2018-08/DE2819F8-2778-4114-986A-F4A2D0268E40.png" alt="https://qiniu.miiiku.xyz/attach/2018-08/DE2819F8-2778-4114-986A-F4A2D0268E40.png"></p>
 <p>以上！！！</p>
 

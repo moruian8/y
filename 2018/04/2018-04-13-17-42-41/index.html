@@ -127,21 +127,18 @@
 
     <div class="article-entry">
       <h3 id="mongodb数据备份与恢复"><a href="#mongodb数据备份与恢复" class="headerlink" title="mongodb数据备份与恢复"></a>mongodb数据备份与恢复</h3><h4 id="备份"><a href="#备份" class="headerlink" title="备份"></a>备份</h4><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs undefined">mongodump -h <span class="hljs-params">&lt;dbhost&gt;</span> -d <span class="hljs-params">&lt;dbname&gt;</span> -o <span class="hljs-params">&lt;dbdirectory&gt;</span><br><span class="hljs-comment">// 示例</span><br>mongodump -h localhost -d test -o <span class="hljs-meta-keyword">/home/</span>data<br></code></pre></td></tr></table></figure>
-
 <ul>
 <li>-h 服务器地址 如: 127.0.0.1 也可以指定端口号: 127.0.0.1:27017</li>
 <li>-d 需要备份的数据库名 如: test</li>
 <li>-o 存放的目录 如: /home/data mongodb会自动在/home/data下创建一个test目录，里面存放备份数据</li>
 </ul>
 <h4 id="恢复"><a href="#恢复" class="headerlink" title="恢复"></a>恢复</h4><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs undefined">mongorestore -h <span class="hljs-params">&lt;dbhost&gt;</span> -d <span class="hljs-params">&lt;dbname&gt;</span> <span class="hljs-params">&lt;path&gt;</span><br><span class="hljs-comment">// 示例</span><br>mongorestore -h localhost -d test <span class="hljs-meta-keyword">/home/</span>data/user.json<br></code></pre></td></tr></table></figure>
-
 <ul>
 <li>-h 服务器地址 如: 127.0.0.1 也可以指定端口号: 127.0.0.1:27017</li>
 <li>-d 需要恢复的数据库名 如: test</li>
-<li>&lt; path &gt; 指定恢复数据的数据源目录位置 如: /home/data/test</li>
+<li>&lt; path > 指定恢复数据的数据源目录位置 如: /home/data/test</li>
 </ul>
 <h4 id="导出单张数据表"><a href="#导出单张数据表" class="headerlink" title="导出单张数据表"></a>导出单张数据表</h4><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs undefined">mongoexport -h <span class="hljs-params">&lt;dbhost&gt;</span> -d <span class="hljs-params">&lt;dbname&gt;</span> -c <span class="hljs-params">&lt;collectionname&gt;</span> -o <span class="hljs-params">&lt;file&gt;</span> -f <span class="hljs-params">&lt;field&gt;</span><br><span class="hljs-comment">// 示例</span><br>mongoexport -h localhost -d test -c user -o <span class="hljs-meta-keyword">/home/</span>data/user.json<br></code></pre></td></tr></table></figure>
-
 <ul>
 <li>-h 服务器地址 如: 127.0.0.1 也可以指定端口号: 127.0.0.1:27017</li>
 <li>-d 需要导出的数据库名 如: test</li>
@@ -150,12 +147,11 @@
 <li>-f 导出数据输出的字段 如: “_id, username, password”</li>
 </ul>
 <h4 id="导入单张数据表"><a href="#导入单张数据表" class="headerlink" title="导入单张数据表"></a>导入单张数据表</h4><figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs undefined">mongoimport -h <span class="hljs-params">&lt;dbhost&gt;</span> -d <span class="hljs-params">&lt;dbname&gt;</span> -c <span class="hljs-params">&lt;collectionname&gt;</span> <span class="hljs-params">&lt;file&gt;</span><br><span class="hljs-comment">// 示例</span><br>mongoimport -h localhost -d test -c user <span class="hljs-meta-keyword">/home/</span>data/user.json<br></code></pre></td></tr></table></figure>
-
 <ul>
 <li>-h 服务器地址 如: 127.0.0.1 也可以指定端口号: 127.0.0.1:27017</li>
 <li>-d 需要导入的数据库名 如: test</li>
 <li>-c 需要导入的数据表名 如: user</li>
-<li>&lt; file &gt; 需要导入的数据文件地址</li>
+<li>&lt; file > 需要导入的数据文件地址</li>
 </ul>
 
     </div>

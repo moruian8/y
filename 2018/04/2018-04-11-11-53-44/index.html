@@ -128,18 +128,13 @@
     <div class="article-entry">
       <p>使用react，vue等开发的项目因为是前后端分离，所有打包发布到服务器以后，需要放在一个静态服务器中运行</p>
 <h6 id="配置Nginx服务器"><a href="#配置Nginx服务器" class="headerlink" title="配置Nginx服务器:"></a>配置Nginx服务器:</h6><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs undefined"><span class="hljs-keyword">cd</span> /etc/nginx/<span class="hljs-keyword">conf</span>.<span class="hljs-built_in">d</span><br>vim demo.confg<br></code></pre></td></tr></table></figure>
-
 <p>添加如下信息:</p>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs undefined"><span class="hljs-section">server</span> &#123;<br>    <span class="hljs-attribute">listen</span> 	<span class="hljs-number">80</span>;<br>    <span class="hljs-attribute">server_name</span> your.domain.com;<br><br>    <span class="hljs-attribute">location</span> / &#123;<br>        <span class="hljs-attribute">try_files</span> <span class="hljs-variable">$uri</span> <span class="hljs-variable">$uri</span>/ /index.html;<br>        <span class="hljs-attribute">root</span>   your project path;<br>        <span class="hljs-attribute">index</span>  index.html index.htm;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-
 <h6 id="重启Nginx"><a href="#重启Nginx" class="headerlink" title="重启Nginx:"></a>重启Nginx:</h6><figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs undefined"><span class="hljs-attribute">service nginx restart</span><br></code></pre></td></tr></table></figure>
-
 <p>重启以后访问你的域名或者IP就可以正常访问项目</p>
 <h6 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项:"></a>注意事项:</h6><p>当你使用了<em>react-router的browserHistory模式</em>或者使用了<em>vue-router的history模式</em>刷新页面会出现404的情况 </p>
 <p>解决方法:</p>
-<p>修改Nginx配置信息如下:</p>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs undefined"><span class="hljs-attribute">location</span> / &#123;<br>        <span class="hljs-attribute">try_files</span> <span class="hljs-variable">$uri</span> <span class="hljs-variable">$uri</span>/ /index.html;<br>&#125;<br></code></pre></td></tr></table></figure>
-
+<p>修改Nginx配置信息如下:<br><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs undefined"><span class="hljs-attribute">location</span> / &#123;<br>        <span class="hljs-attribute">try_files</span> <span class="hljs-variable">$uri</span> <span class="hljs-variable">$uri</span>/ /index.html;<br>&#125;<br></code></pre></td></tr></table></figure></p>
 <p>原理:</p>
 <p>因为我们的项目只有一个根入口，当输入类似/home的url时，找不到这个页面，这时nginx会尝试加载index.html，加载index.html之后，react-router或vue-router就能起作用并匹配我们输入的/home路由，从而显示正确的home页面</p>
 <p>参考地址:<a href="https://segmentfault.com/q/1010000005155831" target="_blank" rel="noopener">https://segmentfault.com/q/1010000005155831</a></p>
