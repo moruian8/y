@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  
+    <meta name="description" content="你好陌生人">
+  
+
+  
+    <meta name="keywords" content="个人博客 Hexo">
+  
+
+  
+    <meta name="author" content="魔艺.咖moyi.ga">
+  
+
+  
+
+  
+
+  <title>关于input输入中文时，不断触发input事件的问题 | 魔艺.咖moyi.ga</title>
+
+  
+
+  
+    <link rel="icon" href="/favicon.ico">
+  
+
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+    <link href="https://cdn.bootcss.com/highlight.js/9.15.6/styles/monokai.min.css" rel="stylesheet">
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div id="container">
+    <!-- header -->
+<header class="header">
+  <div class="header-container ">
+    <nav class="header-navbar">
+      <div class="header-navbar-left">
+        <h1 class="header-navbar-logo">
+          <a href="/">
+            
+              <img src="https://qiniu.miiiku.xyz/src/images/logo.png" alt="魔艺.咖moyi.ga">
+            
+          </a>
+        </h1>
+      </div>
+      <div class="header-navbar-right">
+        <div class="header-navbar-btn">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <ul class="header-navbar-list">
+          
+            <li class="header-navbar-item"><a href="/">首页</a></li>
+          
+            <li class="header-navbar-item"><a href="/categories">分类</a></li>
+          
+            <li class="header-navbar-item"><a href="/tags">标签</a></li>
+          
+            <li class="header-navbar-item"><a href="/links">友链</a></li>
+          
+            <li class="header-navbar-item"><a href="/messages">留言</a></li>
+          
+            <li class="header-navbar-item"><a href="/about">关于</a></li>
+          
+        </ul>
+      </div>
+    </nav>
+  </div>
+</header>
+
+    <section id="main"><!-- 文章详情页 -->
+
+<!-- banner container -->
+<div class="banner-container" style="background-image: url(https://qiniu.miiiku.xyz/src/images/banner.jpg)">
+  <div class="banner-inner">
+
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+      <h1 class="header-title"><a href="/2018/08/2018-08-28-11-55-06/">关于input输入中文时，不断触发input事件的问题</a></h1>
+      <h2 class="header-subtitle">
+        
+          <a class="article-category-link" href="/categories/笔记/">笔记</a>
+          <!--
+          
+  <a href="javascript:;" class="article-date">
+    <time datetime="2018-08-28T03:55:06.000Z" itemprop="datePublished">2018-08-28 11:55:06</time>
+  </a>
+
+          -->
+        
+      </h2>
+    
+
+    
+    
+  </div>
+</div>
+
+<!-- 文章内容 -->
+
+<div class="body-container">
+  <article id="article-content" class="main-container article-content zoom">
+    
+    
+
+    <div class="article-entry">
+      <p>监听一个文本框的<em>input</em>事件的时候，当输入中文但未实际填充到文本框还在候选时，也会一直触发<em>input</em>事件，如图：(搬运原文图片)</p>
+<p><img src="https://qiniu.miiiku.xyz/attach/2018-08/1069543-20171009211759324-6471773.gif" alt="https://qiniu.miiiku.xyz/attach/2018-08/1069543-20171009211759324-6471773.gif"></p>
+<p><em>compositionstart</em>  事件触发于一段文字的输入之前（类似于 keydown 事件，但是该事件仅在若干可见字符的输入之前，而这些可见字符的输入可能需要一连串的键盘操作、语音识别或者点击输入法的备选词）</p>
+<p><em>compositionend</em> 当文本段落的组织已经完成或取消时，会触发该事件。</p>
+<p>触发<em>compositionstart</em>时，文本框会填入 “虚拟文本”（待确认文本），同时触发<em>input</em>事件；在触发<em>compositionend</em>时，就是填入实际内容后（已确认文本）。</p>
+<h5 id="解决思路："><a href="#解决思路：" class="headerlink" title="解决思路："></a>解决思路：</h5><p>声明一个标记flag，在compositionstart、compositionend两个事件过程之间的时候flag值为false，在input事件中通过flag的值来判断当前输入的状态。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">var</span> flag = <span class="hljs-literal">true</span>;<br><br>$(<span class="hljs-string">'#txt'</span>).on(<span class="hljs-string">'compositionstart'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>    flag = <span class="hljs-literal">false</span>;<br>&#125;)<br><br>$(<span class="hljs-string">'#txt'</span>).on(<span class="hljs-string">'compositionend'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>    flag = <span class="hljs-literal">true</span>;<br>&#125;)<br><br>$(<span class="hljs-string">'#txt'</span>).on(<span class="hljs-string">'input'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>    <span class="hljs-keyword">var</span> _this = <span class="hljs-keyword">this</span>;<br>    setTimeout(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>        <span class="hljs-keyword">if</span>(flag)&#123;<br>            <span class="hljs-built_in">console</span>.log($(_this).val());<br>        &#125;<br>    &#125;,<span class="hljs-number">0</span>)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://qiniu.miiiku.xyz/attach/2018-08/1069543-20171009211830262-1175113284.gif" alt="https://qiniu.miiiku.xyz/attach/2018-08/1069543-20171009211830262-1175113284.gif"></p>
+<h5 id="tips"><a href="#tips" class="headerlink" title="tips:"></a>tips:</h5><p>为什么使用延时器？</p>
+<p>因为选词结束的时候input会比compositionend先一步触发，此时flag还未调整为true，所以不能触发到console，故用setTimeout将其优先级滞后。</p>
+<p>本文转载于: <a href="https://www.cnblogs.com/lonhon/p/7643095.html" target="_blank" rel="noopener">https://www.cnblogs.com/lonhon/p/7643095.html</a></p>
+
+    </div>
+
+    <div class="article-footer">
+      <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/html/">#html</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/js/">#js</a></li></ul>
+    </div>
+
+    <div class="article-navs">
+      
+<nav class="card-container card-article-nav">
+  <div class="card-wrap">
+    
+      <div class="card-item img">
+        <article>
+          
+            <div class="card-cover" style="background-image: url(https://qiniu.miiiku.xyz/video/%E7%BE%8E.mp4?vframe/jpg/offset/10)"></div>
+          
+          <a class="card-link article-nav-link" href="/2018/09/2018-09-03-17-21-12/"></a>
+          <div class="article-nav-caption">Newer</div>
+          <div class="article-nav-title">美 MAD.AMV</div>
+        </article>
+      </div>
+    
+    
+      <div class="card-item img">
+        <article>
+          
+            <div class="card-cover" style="background-image: url(https://qiniu.miiiku.xyz/attach/5b7d2608738695267b4589ce/DAE4F7CE5EA82CB82426B8D30735BC0B.jpg)"></div>
+          
+          <a class="card-link article-nav-link" href="/2018/08/2018-08-22-16-59-52/"></a>
+          <div class="article-nav-caption">Older</div>
+          <div class="article-nav-title">2018.07 随拍</div>
+        </article>
+      </div>
+    
+  </div>
+</nav>
+
+    </div>
+    
+    
+  <div id="comment-container" class="comment-container"></div>
+
+  </article>
+</div></section>
+
+    <!-- footer container -->
+<footer id="footer" class="footer">
+  <div class="footer-container">
+    <p>&copy; 2019 <a href="/" target="_blank">魔艺.咖moyi.ga</a></p>
+
+    
+      <p id="hitokoto"></p>
+      <script src="https://v1.hitokoto.cn/?c=a&amp;encode=js&select=%23hitokoto" defer></script>
+    
+
+    
+      <p><a href="http://www.miitbeian.gov.cn" target="_blank">蜀ICP备15014309号</a></p>
+    
+
+    <p>Powered by <a href="https://hexo.io" target="_blank">Hexo</a> Theme - <a href="https://github.com/miiiku/flex-block" target="_blank">flex-block</a></p>
+  </div>
+</footer>
+  </div>
+
+  
+  <!-- 尾部其他内容 -->
+
+<!-- analytics -->
+
+
+
+
+
+<!-- Baidu Analytics -->
+<script>
+  var _hmt = _hmt || [];
+  (function() {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?410f4beade12e8df64ea4c5622313220";
+    var s = document.getElementsByTagName("script")[0]; 
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+<!-- End Baidu Analytics -->
+
+
+<!-- Tencent Analytics -->
+<script type="text/javascript" src="https://tajs.qq.com/stats?sId=64852535" charset="UTF-8"></script>
+<!-- End Tencent Analytics -->
+
+
+  
+  
+<!-- valine 评论 -->
+<script type="text/javascript" src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script type="text/javascript" src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script type="text/javascript">
+  new Valine({
+    el: "#comment-container",
+    appId: "oTmfgIaoB7PfPATvA9tsOwTu-gzGzoHsz",
+    appKey: "PPbJycuezKD3BJlhHUy8zOnG",
+    avatar: "mm",
+    placeholder: "随便说点什么叭～",
+    notify: true,
+    visitor: true,
+    pageSize: 10,
+  });
+</script>
+
+
+<!-- dplayer 视频 -->
+<link rel="stylesheet" href="/lib/DPlayer.min.css">
+<script src="/lib/DPlayer.min.js"></script>
+<script type="text/javascript">
+  const dplayer = document.querySelectorAll(".dplayer");
+  dplayer && initDPlayer(dplayer);
+  function initDPlayer(els) {
+    let elsArr = Array.from(els);
+    elsArr.forEach(el => {
+      let url = el.dataset.url;
+      let cover = el.dataset.cover;
+      new DPlayer({
+        container: el,
+        video: { url: url, pic: cover },
+        theme: "#b7daff",
+        autoplay: false,
+        loop: false,
+        mutex: true,
+      });
+    });
+  }
+</script>
+
+
+<!-- 瀑布流 -->
+<script src="/lib/macy.js"></script>
+<script type="text/javascript">
+
+if (document.querySelector(".waterfall-container")) {
+  initCss()
+  initMacy(".waterfall-container")
+}
+
+function initMacy(selector) {
+  new Macy({
+    container: selector,
+    trueOrder: false,
+    waitForImages: false,
+    useOwnImageLoader: false,
+    mobileFirst: true,
+    columns: 1,
+    margin: {
+      y: 16,
+      x: '2%',
+    },
+    breakAt: {
+      1200: {
+        margin: {
+          x: 20
+        },
+        columns: 4
+      },
+      940: {
+        margin: {
+          x: 20
+        },
+        columns: 3
+      },
+      520: {
+        margin: {
+          x: 10
+        },
+        columns: 2
+      },
+      400: {
+        margin: {
+          x: 0
+        },
+        columns: 1
+      },
+    }
+  });
+}
+
+function initCss() {
+  let cssStyle = document.createElement("style")
+  cssStyle.innerText = `.waterfall-container p { display: block; border-radius: 4px; overflow: hidden; margin: 0; }`
+  document.head.appendChild(cssStyle);
+}
+</script>
+
+
+<!-- 图片预览 -->
+<script src="/lib/zoom.min.js"></script>
+<script>
+  document.querySelector(".zoom") && zoom(".zoom", {
+    margin: 15,
+    padding: 15,
+    radius: 5,
+    specify: "",
+    filter: "gallery",
+  });
+</script>
+
+
+<script src="/js/script.js"></script>
+</body>
+</html>
